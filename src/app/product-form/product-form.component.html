@@ -1,0 +1,21 @@
+<div *ngIf="productForm">
+  <h2>{{ isEditMode ? 'Edit Product' : 'Add Product' }}</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <label>
+      Name:
+      <input formControlName="name" />
+    </label>
+    <div *ngIf="productForm.controls['name'].invalid && productForm.controls['name'].touched">
+      Name is required
+    </div>
+    <label>
+      Price:
+      <input formControlName="price" type="number" />
+    </label>
+    <div *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].touched">
+      Price is required and must be a number
+    </div>
+    <button type="submit" [disabled]="productForm.invalid">Save</button>
+    <button type="button" (click)="onCancel()">Cancel</button>
+  </form>
+</div>
